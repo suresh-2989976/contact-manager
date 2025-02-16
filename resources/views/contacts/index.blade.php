@@ -9,23 +9,29 @@
 </head>
 <body>
     <div class="container mt-5">
-    @if(session('success'))
-<div class="alert alert-success alert-dismissible fade show" role="alert" id="flash-message">
-    {{ session('success') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-<script>
-    setTimeout(function() {
-        document.getElementById('flash-message').style.display = 'none';
-    }, 5000);
-</script>
-@endif
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="flash-message">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('flash-message').style.display = 'none';
+                }, 5000);
+            </script>
+            @endif
+            <div class="row">
+                <div class="col text-end mb-4">
+                    <a href="{{ route('logout') }}" class="btn btn-sm btn-danger">Logout</a>
+                </div>
+            </div>
+
         <div class="d-flex justify-content-between mb-4">
             <h1>Contact List</h1>
             <a href="{{ route('contacts.create') }}" class="btn btn-primary h-75">Add New Contact</a>
         </div>
 
-        <!-- XML Import Form -->
+      
         <div class="card mb-4">
             <div class="card-header">Bulk Import Contacts</div>
             <div class="card-body">
@@ -39,7 +45,7 @@
             </div>
         </div>
 
-        <!-- Contacts Table -->
+        
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -56,7 +62,8 @@
                     <td>{{ $contact->name }}</td>
                     <td>{{ $contact->phone }}</td>
                     <td>
-                        <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                        <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-sm btn-info">Show</a>
                         <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
