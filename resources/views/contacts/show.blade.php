@@ -17,10 +17,11 @@
                         <dd class="col-sm-9">{{ $contact->phone }}</dd>
 
                         <dt class="col-sm-3">Created At:</dt>
-                        <dd class="col-sm-9">{{ $contact->created_at->format('d M Y H:i') }}</dd>
+                        <dd class="col-sm-9">{{ $contact->created_at->setTimezone('Asia/Kolkata')->format('d M Y H:i') }}</dd>
 
                         <dt class="col-sm-3">Last Updated:</dt>
-                        <dd class="col-sm-9">{{ $contact->updated_at->format('d M Y H:i') }}</dd>
+                        <dd class="col-sm-9">{{ $contact->updated_at->setTimezone('Asia/Kolkata')->format('d M Y H:i') }}
+                        </dd>
                     </dl>
                     
                     <div class="mt-4">
